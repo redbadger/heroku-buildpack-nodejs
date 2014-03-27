@@ -91,7 +91,7 @@ fi
 
   status "Installing dependencies"
   # Make npm output to STDOUT instead of its default STDERR
-  npm install --userconfig $build_dir/.npmrc --production 2>&1 | indent
+  npm install --userconfig $build_dir/.npmrc 2>&1 | indent
 )
 
 # Persist goodies like node-version in the slug
@@ -138,8 +138,9 @@ gem install bundler
 status "Installing SASS and Compass"
 bundle install
 status "Running Grunt"
-npm install -g grunt-cli
-grunt
+npm install grunt-cli
+npm install grunt
+$build_dir/node_modules/.bin/grunt
 
 # If Procfile is absent, try to create one using `npm start`
 if [ ! -e $build_dir/Procfile ]; then
