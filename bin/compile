@@ -131,9 +131,11 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+export GEM_HOME=$build_dir/ruby/.gem/ruby/1.9.1
+PATH="$GEM_HOME/bin:$PATH"
 status "Installing bundler"
 gem install bundler
-status "Bundling"
+status "Installing SASS and Compass"
 bundle install
 status "Running Grunt"
 grunt
