@@ -119,6 +119,10 @@ status "Cleaning up node-gyp and npm artifacts"
 rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
+# Do the build
+bundle install
+grunt
+
 # If Procfile is absent, try to create one using `npm start`
 if [ ! -e $build_dir/Procfile ]; then
   npm_start=$(cat $build_dir/package.json | $bp_dir/vendor/jq -r .scripts.start)
