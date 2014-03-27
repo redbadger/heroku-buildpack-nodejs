@@ -138,6 +138,7 @@ gem install bundler
 status "Installing SASS and Compass"
 bundle install
 status "Running Grunt"
+npm install -g grunt-cli
 grunt
 
 # If Procfile is absent, try to create one using `npm start`
