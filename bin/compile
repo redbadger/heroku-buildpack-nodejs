@@ -120,6 +120,7 @@ rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
 # Do the build
+gem install bundler
 bundle install
 grunt
 
