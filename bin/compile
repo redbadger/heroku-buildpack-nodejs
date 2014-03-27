@@ -120,8 +120,11 @@ rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
 # Do the build
+status "Installing bundler"
 gem install bundler
+status "Bundling"
 bundle install
+status "Running Grunt"
 grunt
 
 # If Procfile is absent, try to create one using `npm start`
