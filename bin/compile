@@ -140,7 +140,7 @@ bundle install
 status "Running Grunt"
 npm install grunt-cli
 npm install grunt
-$build_dir/node_modules/.bin/grunt
+$build_dir/node_modules/.bin/grunt heroku
 
 # If Procfile is absent, try to create one using `npm start`
 if [ ! -e $build_dir/Procfile ]; then
