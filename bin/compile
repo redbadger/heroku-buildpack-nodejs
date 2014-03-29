@@ -119,6 +119,9 @@ status "Cleaning up node-gyp and npm artifacts"
 rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
+status "Importing environment vars"
+export_env_dir $env_dir
+
 # Do the build
 status "Fixing encoding issues"
 
@@ -132,14 +135,14 @@ export LC_TIME="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 export GEM_HOME=$build_dir/ruby/.gem/ruby/1.9.1
-PATH="$GEM_HOME/bin:$PATH"
+export PATH="$GEM_HOME/bin:$PATH"
 status "Installing bundler"
 gem install bundler
 status "Installing SASS and Compass"
 bundle install
 status "Running Gulp"
 npm install gulp
-$build_dir/node_modules/.bin/gulp heroku
+$build_dir/node_modules/.bin/gulp --verbose heroku
 
 # If Procfile is absent, try to create one using `npm start`
 if [ ! -e $build_dir/Procfile ]; then
