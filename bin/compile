@@ -142,7 +142,7 @@ status "Installing SASS and Compass"
 bundle install
 status "Running Gulp"
 npm install gulp
-$build_dir/node_modules/.bin/gulp --verbose heroku
+$build_dir/node_modules/.bin/gulp heroku --verbose
 
 # If Procfile is absent, try to create one using `npm start`
 if [ ! -e $build_dir/Procfile ]; then
