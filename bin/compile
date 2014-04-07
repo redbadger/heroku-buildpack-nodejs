@@ -138,11 +138,18 @@ export GEM_HOME=$build_dir/ruby/.gem/ruby/1.9.1
 export PATH="$GEM_HOME/bin:$PATH"
 status "Installing bundler"
 gem install bundler
-status "Installing SASS and Compass"
+status "Performing bundle install"
 bundle install
-status "Running Gulp"
-npm install gulp
-$build_dir/node_modules/.bin/gulp heroku --verbose
+if [ -f $build_dir/Gruntfile.js ] || [ -f $build_dir/Gruntfile.coffee ]; then
+status "Running Grunt"
+  npm install grunt-cli
+  $build_dir/node_modules/.bin/grunt heroku
+fi
+if [ -f $build_dir/Gulpfile.js ]; then
+  status "Running Gulp"
+  npm install gulp
+  $build_dir/node_modules/.bin/gulp heroku --verbose
+fi
 
 # If Procfile is absent, try to create one using `npm start`
 if [ ! -e $build_dir/Procfile ]; then
